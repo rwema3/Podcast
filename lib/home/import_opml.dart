@@ -9,3 +9,9 @@ import '../state/podcast_group.dart';
 import '../state/refresh_podcast.dart';
 import '../util/extension_helper.dart';
 
+class Import extends StatelessWidget {
+  Widget importColumn(String text, BuildContext context) {
+    return Container(
+      color: context.primaryColorDark,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
