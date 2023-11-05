@@ -70,3 +70,37 @@ class _ScrollPodcastsState extends State<ScrollPodcasts>
     super.dispose();
   }
 
+  @override
+  Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final s = context.s;
+    return Selector2<GroupList, RefreshWorker,
+        tuple.Tuple3<List<PodcastGroup?>, bool, bool>>(
+      selector: (_, groupList, refreshWorker) => tuple.Tuple3(
+          groupList.groups, groupList.created, refreshWorker.created),
+      builder: (_, data, __) {
+        final groups = data.item1;
+        final import = data.item2;
+        if (groups.isEmpty) {
+          return SizedBox(
+            height: (width - 20) / 3 + 140,
+          );
+        }
+        if (groups[_groupIndex]!.podcastList.length == 0) {
+          return SizedBox(
+            height: (width - 20) / 3 + 140,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                GestureDetector(
+                  onVerticalDragEnd: (event) {
+                    if (event.primaryVelocity! > 200) {
+                      if (groups.length == 1) {
+                        Fluttertoast.showToast(
+                          msg: s.addSomeGroups,
+                          gravity: ToastGravity.BOTTOM,
+                        );
+                      } else {
+                        if (mounted) {
+                          setState(() {
