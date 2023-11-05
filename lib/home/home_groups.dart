@@ -155,3 +155,33 @@ class _ScrollPodcastsState extends State<ScrollPodcasts>
                                       SlideLeftRoute(
                                         page: context
                                                 .read<SettingState>()
+                                                .openAllPodcastDefalt!
+                                            ? PodcastList()
+                                            : PodcastManage(),
+                                      ),
+                                    );
+                                  }
+                                },
+                                onLongPress: () {
+                                  if (!import) {
+                                    Navigator.push(
+                                      context,
+                                      SlideLeftRoute(page: PodcastList()),
+                                    );
+                                  }
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Text(
+                                    s.homeGroupsSeeAll,
+                                    style:
+                                        context.textTheme.bodyText1!.copyWith(
+                                      color: import
+                                          ? context.primaryColorDark
+                                          : context.accentColor,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
