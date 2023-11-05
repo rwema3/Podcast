@@ -457,3 +457,80 @@ class _ScrollPodcastsState extends State<ScrollPodcasts>
 }
 
 class PodcastPreview extends StatefulWidget {
+  final PodcastLocal? podcastLocal;
+
+  PodcastPreview({this.podcastLocal, Key? key}) : super(key: key);
+
+  @override
+  _PodcastPreviewState createState() => _PodcastPreviewState();
+}
+
+class _PodcastPreviewState extends State<PodcastPreview> {
+  Future? _getRssItem;
+
+  @override
+  void initState() {
+    super.initState();
+    _getRssItem = _getRssItemTop(widget.podcastLocal!);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final c = widget.podcastLocal!.backgroudColor(context);
+    return Column(
+      children: <Widget>[
+        Expanded(
+          child: Selector2<RefreshWorker, GroupList, tuple.Tuple2<bool, bool>>(
+            selector: (_, refreshWorker, groupWorker) =>
+                tuple.Tuple2(refreshWorker.created, groupWorker.created),
+            builder: (_, data, __) {
+              _getRssItem = _getRssItemTop(widget.podcastLocal!);
+              return FutureBuilder<List<EpisodeBrief>>(
+                future:
+                    _getRssItem!.then((value) => value as List<EpisodeBrief>),
+                builder: (context, snapshot) {
+                  return (snapshot.hasData)
+                      ? ShowEpisode(
+                          episodes: snapshot.data,
+                          podcastLocal: widget.podcastLocal,
+                        )
+                      : Padding(
+                          padding: const EdgeInsets.all(5.0),
+                        );
+                },
+              );
+            },
+          ),
+        ),
+        Container(
+          height: 40,
+          padding: EdgeInsets.only(left: 10.0),
+          alignment: Alignment.center,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Expanded(
+                flex: 4,
+                child: Text(
+                  widget.podcastLocal!.title!,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(fontWeight: FontWeight.bold, color: c),
+                ),
+              ),
+              Expanded(
+                flex: 1,
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 8.0),
+                    child: Icon(Icons.arrow_forward),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
