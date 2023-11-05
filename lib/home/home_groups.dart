@@ -1001,3 +1001,19 @@ class ShowEpisode extends StatelessWidget {
         TextButton(
           onPressed: () {
             Navigator.of(context).pop();
+          },
+          child: Text(
+            s.cancel,
+            style: TextStyle(color: Colors.grey[600]),
+          ),
+        ),
+        TextButton(
+          onPressed: () {
+            ifUseData = true;
+            Navigator.of(context).pop();
+          },
+          child: Text(
+            s.confirm,
+            style: TextStyle(color: Colors.red),
+          ),
+        )
