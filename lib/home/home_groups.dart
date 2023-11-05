@@ -280,3 +280,56 @@ class _ScrollPodcastsState extends State<ScrollPodcasts>
                       }
                     }
                   }
+                },
+                child: Column(
+                  children: <Widget>[
+                    SizedBox(
+                      height: 30,
+                      child: Row(
+                        children: <Widget>[
+                          Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 15.0),
+                              child: Text(
+                                groups[_groupIndex]!.name!,
+                                style: context.textTheme.bodyText1!
+                                    .copyWith(color: context.accentColor),
+                              )),
+                          Spacer(),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 15),
+                            child: InkWell(
+                              onTap: () {
+                                if (!import) {
+                                  Navigator.push(
+                                    context,
+                                    SlideLeftRoute(
+                                        page: context
+                                                .read<SettingState>()
+                                                .openAllPodcastDefalt!
+                                            ? PodcastList()
+                                            : PodcastManage()),
+                                  );
+                                }
+                              },
+                              onLongPress: () {
+                                if (!import) {
+                                  Navigator.push(
+                                    context,
+                                    SlideLeftRoute(page: PodcastList()),
+                                  );
+                                }
+                              },
+                              borderRadius: BorderRadius.circular(5),
+                              child: Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: Text(
+                                  s.homeGroupsSeeAll,
+                                  style: context.textTheme.bodyText1!.copyWith(
+                                      color: import
+                                          ? context.primaryColorDark
+                                          : context.accentColor),
+                                ),
+                              ),
+                            ),
+                          )
