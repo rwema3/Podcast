@@ -29,3 +29,14 @@ class Import extends StatelessWidget {
     );
   }
 
+  _autoDownloadNew(BuildContext context) async {
+    final dbHelper = DBHelper();
+    final downloader = Provider.of<DownloadState>(context, listen: false);
+    final result = await Connectivity().checkConnectivity();
+    final autoDownloadStorage = KeyValueStorage(autoDownloadNetworkKey);
+    final autoDownloadNetwork = await autoDownloadStorage.getInt();
+    if (autoDownloadNetwork == 1) {
+      final episodes = await dbHelper.getNewEpisodes('all');
+      // For safety
+      if (episodes.length < 100 && episodes.length > 0) {
+        for (var episode in episodes) {
