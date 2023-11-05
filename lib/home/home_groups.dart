@@ -367,3 +367,93 @@ class _ScrollPodcastsState extends State<ScrollPodcasts>
                         }).toList(),
                       ),
                     ),
+                  ],
+                ),
+              ),
+              Container(
+                height: (width - 20) / 3 + 40,
+                decoration: BoxDecoration(
+                  color: context.background,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: TabBarView(
+                  children: groups[_groupIndex]!.podcasts.map<Widget>(
+                    (podcastLocal) {
+                      return Container(
+                        decoration: BoxDecoration(
+                            color: context.brightness == Brightness.light
+                                ? context.primaryColor
+                                : Colors.black12),
+                        margin: EdgeInsets.symmetric(horizontal: 5.0),
+                        key: ObjectKey(podcastLocal.title),
+                        child: Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            borderRadius: BorderRadius.circular(20),
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                HidePlayerRoute(
+                                  PodcastDetail(
+                                    podcastLocal: podcastLocal,
+                                  ),
+                                  PodcastDetail(
+                                      podcastLocal: podcastLocal, hide: true),
+                                  duration: Duration(milliseconds: 300),
+                                ),
+                              );
+                            },
+                            child: PodcastPreview(
+                              podcastLocal: podcastLocal,
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ).toList(),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  Future<int?> _getPodcastUpdateCounts(String? id) async {
+    final dbHelper = DBHelper();
+    return await dbHelper.getPodcastUpdateCounts(id);
+  }
+
+  Widget _circleContainer(BuildContext context) => Container(
+        margin: EdgeInsets.symmetric(horizontal: 10),
+        height: 50,
+        width: 50,
+        decoration:
+            BoxDecoration(shape: BoxShape.circle, color: context.primaryColor),
+      );
+
+  Widget _updateIndicator(PodcastLocal podcastLocal) => FutureBuilder<int?>(
+        future: _getPodcastUpdateCounts(podcastLocal.id),
+        initialData: 0,
+        builder: (context, snapshot) {
+          return snapshot.data! > 0
+              ? Align(
+                  alignment: Alignment.bottomRight,
+                  child: Container(
+                    alignment: Alignment.center,
+                    height: 10,
+                    width: 10,
+                    decoration: BoxDecoration(
+                        color: Colors.red,
+                        border:
+                            Border.all(color: context.primaryColor, width: 2),
+                        shape: BoxShape.circle),
+                  ),
+                )
+              : Center();
+        },
+      );
+}
+
+class PodcastPreview extends StatefulWidget {
