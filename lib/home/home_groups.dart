@@ -864,3 +864,42 @@ class ShowEpisode extends StatelessWidget {
                                         ),
                                       episodes![index].duration == 0 ||
                                               episodes![index]
+                                                      .enclosureLength ==
+                                                  null ||
+                                              episodes![index]
+                                                      .enclosureLength ==
+                                                  0
+                                          ? Center()
+                                          : Text(
+                                              '|',
+                                              style: TextStyle(
+                                                fontSize: width / 35,
+                                              ),
+                                            ),
+                                      if (episodes![index].enclosureLength !=
+                                              null &&
+                                          episodes![index].enclosureLength != 0)
+                                        Container(
+                                          alignment: Alignment.center,
+                                          child: Text(
+                                            '${episodes![index].enclosureLength! ~/ 1000000}MB',
+                                            style:
+                                                TextStyle(fontSize: width / 35),
+                                          ),
+                                        ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                );
+              },
+              childCount: math.min(episodes!.length, 2),
+            ),
+          ),
+        ),
