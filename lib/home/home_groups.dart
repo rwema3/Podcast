@@ -945,3 +945,29 @@ class ShowEpisode extends StatelessWidget {
   Future<void> _markListened(EpisodeBrief episode) async {
     var marked = await _dbHelper.checkMarked(episode);
     if (!marked) {
+      final history = PlayHistory(episode.title, episode.enclosureUrl, 0, 1);
+      await _dbHelper.saveHistory(history);
+    }
+  }
+
+  Future<void> _saveLiked(String url) async {
+    await _dbHelper.setLiked(url);
+  }
+
+  Future<void> _setUnliked(String url) async {
+    await _dbHelper.setUniked(url);
+  }
+
+  Future<void> _requestDownload(BuildContext context,
+      {EpisodeBrief? episode}) async {
+    final permissionReady = await _checkPermmison();
+    final downloadUsingData = await KeyValueStorage(downloadUsingDataKey)
+        .getBool(defaultValue: true, reverse: true);
+    final result = await Connectivity().checkConnectivity();
+    final usingData = result == ConnectivityResult.mobile;
+    var dataConfirm = true;
+    if (permissionReady) {
+      if (downloadUsingData && usingData) {
+        dataConfirm = await _useDataConfirm(context);
+      }
+      if (dataConfirm) {
