@@ -971,3 +971,33 @@ class ShowEpisode extends StatelessWidget {
         dataConfirm = await _useDataConfirm(context);
       }
       if (dataConfirm) {
+        Provider.of<DownloadState>(context, listen: false).startTask(episode!);
+      }
+    }
+  }
+
+  Future<bool> _checkPermmison() async {
+    var permission = await Permission.storage.status;
+    if (permission != PermissionStatus.granted) {
+      var permissions = await [Permission.storage].request();
+      if (permissions[Permission.storage] == PermissionStatus.granted) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return true;
+    }
+  }
+
+  Future<bool> _useDataConfirm(BuildContext context) async {
+    var ifUseData = false;
+    final s = context.s;
+    await generalDialog(
+      context,
+      title: Text(s.cellularConfirm),
+      content: Text(s.cellularConfirmDes),
+      actions: <Widget>[
+        TextButton(
+          onPressed: () {
+            Navigator.of(context).pop();
