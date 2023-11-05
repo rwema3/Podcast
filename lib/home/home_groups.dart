@@ -185,3 +185,21 @@ class _ScrollPodcastsState extends State<ScrollPodcasts>
                               ),
                             ),
                           ],
+                        ),
+                      ),
+                      Container(
+                          height: 70,
+                          color: context.background,
+                          child: Row(
+                            children: <Widget>[
+                              _circleContainer(context),
+                              _circleContainer(context),
+                              _circleContainer(context)
+                            ],
+                          )),
+                    ],
+                  ),
+                ),
+                Container(
+                  height: (width - 20) / 3 + 40,
+                  color: context.background,
