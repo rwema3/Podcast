@@ -746,3 +746,34 @@ class ShowEpisode extends StatelessWidget {
                             context,
                             ScaleRoute(
                                 page: EpisodeDetail(
+                              episodeItem: episodes![index],
+                              heroTag: 'scroll',
+                              //unique hero tag
+                            )),
+                          ),
+                          child: Container(
+                            padding: EdgeInsets.all(10.0),
+                            decoration: BoxDecoration(
+                              color: podcastLocal!.cardColor(context),
+                              borderRadius: BorderRadius.circular(15.0),
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Expanded(
+                                  flex: 2,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: <Widget>[
+                                      Hero(
+                                        tag:
+                                            '${episodes![index].enclosureUrl}scroll',
+                                        child: Container(
+                                          height: width / 18,
+                                          width: width / 18,
+                                          child: CircleAvatar(
+                                            backgroundImage:
+                                                podcastLocal!.avatarImage,
+                                          ),
+                                        ),
+                                      ),
