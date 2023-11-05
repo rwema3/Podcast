@@ -706,3 +706,43 @@ class ShowEpisode extends StatelessWidget {
                                       );
                                     }
                                   }),
+                            if (menuList.contains(4))
+                              FocusedMenuItem(
+                                  backgroundColor: context.priamryContainer,
+                                  title: isDownloaded
+                                      ? Text(s.downloaded,
+                                          style: TextStyle(
+                                              color: context.textColor
+                                                  .withOpacity(0.5)))
+                                      : Text(s.download),
+                                  trailingIcon: Icon(LineIcons.download,
+                                      color: Colors.green),
+                                  onPressed: () {
+                                    if (!isDownloaded) {
+                                      _requestDownload(context,
+                                          episode: episodes![index]);
+                                      //   downloader
+                                      //       .startTask(episodes[index]);
+                                    }
+                                  }),
+                            if (menuList.contains(5))
+                              FocusedMenuItem(
+                                backgroundColor: context.priamryContainer,
+                                title: Text(s.playNext),
+                                trailingIcon: Icon(
+                                  LineIcons.lightningBolt,
+                                  color: Colors.amber,
+                                ),
+                                onPressed: () {
+                                  audio.moveToTop(episodes![index]);
+                                  Fluttertoast.showToast(
+                                    msg: s.playNextDes,
+                                    gravity: ToastGravity.BOTTOM,
+                                  );
+                                },
+                              ),
+                          ],
+                          onPressed: () => Navigator.push(
+                            context,
+                            ScaleRoute(
+                                page: EpisodeDetail(
