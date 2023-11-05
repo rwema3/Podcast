@@ -104,3 +104,54 @@ class _ScrollPodcastsState extends State<ScrollPodcasts>
                       } else {
                         if (mounted) {
                           setState(() {
+                            (_groupIndex != 0)
+                                ? _groupIndex--
+                                : _groupIndex = groups.length - 1;
+                          });
+                        }
+                      }
+                    } else if (event.primaryVelocity! < -200) {
+                      if (groups.length == 1) {
+                        Fluttertoast.showToast(
+                          msg: s.addSomeGroups,
+                          gravity: ToastGravity.BOTTOM,
+                        );
+                      } else {
+                        if (mounted) {
+                          setState(
+                            () {
+                              (_groupIndex < groups.length - 1)
+                                  ? _groupIndex++
+                                  : _groupIndex = 0;
+                            },
+                          );
+                        }
+                      }
+                    }
+                  },
+                  child: Column(
+                    children: <Widget>[
+                      SizedBox(
+                        height: 30,
+                        child: Row(
+                          children: <Widget>[
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 15.0),
+                              child: Text(
+                                groups[_groupIndex]!.name!,
+                                style: context.textTheme.bodyText1!
+                                    .copyWith(color: context.accentColor),
+                              ),
+                            ),
+                            Spacer(),
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 15),
+                              child: InkWell(
+                                borderRadius: BorderRadius.circular(15),
+                                onTap: () {
+                                  if (!import) {
+                                    Navigator.push(
+                                      context,
+                                      SlideLeftRoute(
+                                        page: context
+                                                .read<SettingState>()
