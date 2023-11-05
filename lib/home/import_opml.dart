@@ -40,3 +40,11 @@ class Import extends StatelessWidget {
       // For safety
       if (episodes.length < 100 && episodes.length > 0) {
         for (var episode in episodes) {
+          await downloader.startTask(episode, showNotification: true);
+        }
+      }
+    } else if (result == ConnectivityResult.wifi) {
+      var episodes = await dbHelper.getNewEpisodes('all');
+      //For safety
+      if (episodes.length < 100 && episodes.length > 0) {
+        for (var episode in episodes) {
