@@ -52,3 +52,22 @@ class Import extends StatelessWidget {
         }
       }
     }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final s = context.s;
+    final groupList = Provider.of<GroupList>(context, listen: false);
+    return Column(
+      children: <Widget>[
+        Consumer<GroupList>(
+          builder: (_, subscribeWorker, __) {
+            final item = subscribeWorker.currentSubscribeItem;
+            switch (item.subscribeState) {
+              case SubscribeState.start:
+                return importColumn(
+                    s.notificationSubscribe(item.title!), context);
+              case SubscribeState.subscribe:
+                return importColumn(s.notificaitonFatch(item.title!), context);
+              case SubscribeState.fetch:
+                return importColumn(
