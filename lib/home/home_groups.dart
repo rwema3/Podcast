@@ -534,3 +534,175 @@ class _PodcastPreviewState extends State<PodcastPreview> {
       ],
     );
   }
+
+  Future<List<EpisodeBrief>> _getRssItemTop(PodcastLocal podcastLocal) async {
+    final dbHelper = DBHelper();
+    final episodes = await dbHelper.getRssItemTop(podcastLocal.id);
+    return episodes;
+  }
+}
+
+class ShowEpisode extends StatelessWidget {
+  final List<EpisodeBrief>? episodes;
+  final PodcastLocal? podcastLocal;
+  final DBHelper _dbHelper = DBHelper();
+  ShowEpisode({Key? key, this.episodes, this.podcastLocal}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final width = context.width;
+    final s = context.s;
+    final audio = Provider.of<AudioPlayerNotifier>(context, listen: false);
+    return CustomScrollView(
+      physics: NeverScrollableScrollPhysics(),
+      primary: false,
+      slivers: <Widget>[
+        SliverPadding(
+          padding: const EdgeInsets.all(5.0),
+          sliver: SliverGrid(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              childAspectRatio: 1.5,
+              crossAxisCount: 2,
+              mainAxisSpacing: 20,
+              crossAxisSpacing: 14,
+            ),
+            delegate: SliverChildBuilderDelegate(
+              (context, index) {
+                final c = podcastLocal!.backgroudColor(context);
+                return Selector<AudioPlayerNotifier,
+                    tuple.Tuple3<EpisodeBrief?, List<String>, bool>>(
+                  selector: (_, audio) => tuple.Tuple3(
+                      audio.episode,
+                      audio.queue.episodes.map((e) => e!.enclosureUrl).toList(),
+                      audio.playerRunning),
+                  builder: (_, data, __) => FutureBuilder<
+                      tuple.Tuple5<int, bool, bool, bool, List<int>>>(
+                    future: _initData(episodes![index]),
+                    initialData: tuple.Tuple5(0, false, false, false, []),
+                    builder: (context, snapshot) {
+                      final isListened = snapshot.data!.item1;
+                      final isLiked = snapshot.data!.item2;
+                      final isDownloaded = snapshot.data!.item3;
+                      final tapToOpen = snapshot.data!.item4;
+                      final menuList = snapshot.data!.item5;
+                      return Align(
+                        alignment: Alignment.center,
+                        child: FocusedMenuHolder(
+                          blurSize: 0.0,
+                          menuItemExtent: 45,
+                          menuBoxDecoration: BoxDecoration(
+                            color: context.priamryContainer,
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(15.0),
+                            ),
+                          ),
+                          duration: Duration(milliseconds: 100),
+                          tapMode:
+                              tapToOpen ? TapMode.onTap : TapMode.onLongPress,
+                          animateMenuItems: false,
+                          blurBackgroundColor:
+                              context.brightness == Brightness.light
+                                  ? Colors.white38
+                                  : Colors.black38,
+                          bottomOffsetHeight: 10,
+                          menuOffset: 6,
+                          menuItems: <FocusedMenuItem>[
+                            FocusedMenuItem(
+                                backgroundColor: context.priamryContainer,
+                                title: Text(data.item1 != episodes![index] ||
+                                        !data.item3
+                                    ? s.play
+                                    : s.playing),
+                                trailingIcon: Icon(
+                                  LineIcons.playCircle,
+                                  color: context.accentColor,
+                                ),
+                                onPressed: () {
+                                  if (data.item1 != episodes![index] ||
+                                      !data.item3) {
+                                    audio.episodeLoad(episodes![index]);
+                                  }
+                                }),
+                            if (menuList.contains(1))
+                              FocusedMenuItem(
+                                  backgroundColor: context.priamryContainer,
+                                  title: data.item2.contains(
+                                          episodes![index].enclosureUrl)
+                                      ? Text(s.remove)
+                                      : Text(s.later),
+                                  trailingIcon: Icon(
+                                    LineIcons.clock,
+                                    color: Colors.cyan,
+                                  ),
+                                  onPressed: () {
+                                    if (!data.item2.contains(
+                                        episodes![index].enclosureUrl)) {
+                                      audio.addToPlaylist(episodes![index]);
+                                      Fluttertoast.showToast(
+                                        msg: s.toastAddPlaylist,
+                                        gravity: ToastGravity.BOTTOM,
+                                      );
+                                    } else {
+                                      audio.delFromPlaylist(episodes![index]);
+                                      Fluttertoast.showToast(
+                                        msg: s.toastRemovePlaylist,
+                                        gravity: ToastGravity.BOTTOM,
+                                      );
+                                    }
+                                  }),
+                            if (menuList.contains(2))
+                              FocusedMenuItem(
+                                  backgroundColor: context.priamryContainer,
+                                  title:
+                                      isLiked ? Text(s.unlike) : Text(s.like),
+                                  trailingIcon: Icon(LineIcons.heart,
+                                      color: Colors.red, size: 21),
+                                  onPressed: () async {
+                                    if (isLiked) {
+                                      await _setUnliked(
+                                          episodes![index].enclosureUrl);
+                                      audio.setEpisodeState = true;
+                                      Fluttertoast.showToast(
+                                        msg: s.unliked,
+                                        gravity: ToastGravity.BOTTOM,
+                                      );
+                                    } else {
+                                      await _saveLiked(
+                                          episodes![index].enclosureUrl);
+                                      audio.setEpisodeState = true;
+                                      Fluttertoast.showToast(
+                                        msg: s.liked,
+                                        gravity: ToastGravity.BOTTOM,
+                                      );
+                                    }
+                                  }),
+                            if (menuList.contains(3))
+                              FocusedMenuItem(
+                                  backgroundColor: context.priamryContainer,
+                                  title: isListened > 0
+                                      ? Text(s.listened,
+                                          style: TextStyle(
+                                              color: context.textColor
+                                                  .withOpacity(0.5)))
+                                      : Text(
+                                          s.markListened,
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                  trailingIcon: SizedBox(
+                                    width: 23,
+                                    height: 23,
+                                    child: CustomPaint(
+                                        painter: ListenedAllPainter(Colors.blue,
+                                            stroke: 1.5)),
+                                  ),
+                                  onPressed: () async {
+                                    if (isListened < 1) {
+                                      await _markListened(episodes![index]);
+                                      audio.setEpisodeState = true;
+                                      Fluttertoast.showToast(
+                                        msg: s.markListened,
+                                        gravity: ToastGravity.BOTTOM,
+                                      );
+                                    }
+                                  }),
