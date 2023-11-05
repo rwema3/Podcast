@@ -83,3 +83,25 @@ class Import extends StatelessWidget {
             }
           },
         ),
+        Consumer<RefreshWorker>(
+          builder: (context, refreshWorker, child) {
+            final item = refreshWorker.currentRefreshItem;
+            if (refreshWorker.complete) {
+              groupList.updateGroups();
+              _autoDownloadNew(context);
+            }
+            switch (item.refreshState) {
+              case RefreshState.fetch:
+                return importColumn(s.notificationUpdate(item.title), context);
+              case RefreshState.error:
+                return importColumn(
+                    s.notificationUpdateError(item.title), context);
+              default:
+                return Center();
+            }
+          },
+        )
+      ],
+    );
+  }
+}
