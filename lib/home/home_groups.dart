@@ -203,3 +203,26 @@ class _ScrollPodcastsState extends State<ScrollPodcasts>
                 Container(
                   height: (width - 20) / 3 + 40,
                   color: context.background,
+                  margin: EdgeInsets.symmetric(horizontal: 15),
+                  child: Center(
+                      child: _groupIndex == 0
+                          ? Text.rich(TextSpan(
+                              style: context.textTheme.headline6!
+                                  .copyWith(height: 2),
+                              children: [
+                                TextSpan(
+                                    text: 'Welcome to Tsacdop\n',
+                                    style: context.textTheme.headline6!
+                                        .copyWith(color: context.accentColor)),
+                                TextSpan(
+                                    text: 'Get started\n',
+                                    style: context.textTheme.headline6!
+                                        .copyWith(color: context.accentColor)),
+                                TextSpan(text: 'Tap '),
+                                WidgetSpan(
+                                    child: Icon(Icons.add_circle_outline)),
+                                TextSpan(text: ' to search podcasts')
+                              ],
+                            ))
+                          : Text(s.noPodcastGroup,
+                              style: TextStyle(
