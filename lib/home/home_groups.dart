@@ -55,3 +55,18 @@ class _ScrollPodcastsState extends State<ScrollPodcasts>
     _groupIndex = 0;
     _controller =
         AnimationController(vsync: this, duration: Duration(milliseconds: 150))
+          ..addListener(() {
+            if (mounted) setState(() {});
+          })
+          ..addStatusListener((status) {
+            if (status == AnimationStatus.completed) _controller.reset();
+          });
+    _slideTween = _getSlideTween(0.0);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
