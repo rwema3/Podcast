@@ -15,3 +15,17 @@ class Import extends StatelessWidget {
       color: context.primaryColorDark,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          SizedBox(height: 2.0, child: LinearProgressIndicator()),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 20.0),
+            height: 20.0,
+            alignment: Alignment.centerLeft,
+            child: Text(text),
+          ),
+        ],
+      ),
+    );
+  }
+
