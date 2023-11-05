@@ -226,3 +226,57 @@ class _ScrollPodcastsState extends State<ScrollPodcasts>
                             ))
                           : Text(s.noPodcastGroup,
                               style: TextStyle(
+                                  color: context.textTheme.bodyText2!.color!
+                                      .withOpacity(0.5)))),
+                ),
+              ],
+            ),
+          );
+        }
+        return DefaultTabController(
+          length: groups[_groupIndex]!.podcasts.length,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              GestureDetector(
+                onVerticalDragEnd: (event) async {
+                  if (event.primaryVelocity! > 200) {
+                    if (groups.length == 1) {
+                      Fluttertoast.showToast(
+                        msg: s.addSomeGroups,
+                        gravity: ToastGravity.BOTTOM,
+                      );
+                    } else {
+                      if (mounted) {
+                        setState(() => _slideTween = _getSlideTween(20));
+                        _controller.forward();
+                        await Future.delayed(Duration(milliseconds: 50));
+                        if (mounted) {
+                          setState(() {
+                            (_groupIndex != 0)
+                                ? _groupIndex--
+                                : _groupIndex = groups.length - 1;
+                          });
+                        }
+                      }
+                    }
+                  } else if (event.primaryVelocity! < -200) {
+                    if (groups.length == 1) {
+                      Fluttertoast.showToast(
+                        msg: s.addSomeGroups,
+                        gravity: ToastGravity.BOTTOM,
+                      );
+                    } else {
+                      setState(() => _slideTween = _getSlideTween(-20));
+                      await Future.delayed(Duration(milliseconds: 50));
+                      _controller.forward();
+                      if (mounted) {
+                        setState(() {
+                          (_groupIndex < groups.length - 1)
+                              ? _groupIndex++
+                              : _groupIndex = 0;
+                        });
+                      }
+                    }
+                  }
