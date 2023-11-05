@@ -333,3 +333,37 @@ class _ScrollPodcastsState extends State<ScrollPodcasts>
                               ),
                             ),
                           )
+                        ],
+                      ),
+                    ),
+                    Container(
+                      height: 70,
+                      width: width,
+                      alignment: Alignment.centerLeft,
+                      color: context.background,
+                      child: TabBar(
+                        labelPadding: EdgeInsets.fromLTRB(6.0, 5.0, 6.0, 10.0),
+                        indicator: CircleTabIndicator(
+                            color: context.accentColor, radius: 3),
+                        isScrollable: true,
+                        tabs: groups[_groupIndex]!
+                            .podcasts
+                            .map<Widget>((podcastLocal) {
+                          final color = podcastLocal.backgroudColor(context);
+                          return Tab(
+                            child: Transform.translate(
+                              offset: Offset(
+                                  0, _slideTween.animate(_controller).value),
+                              child: LimitedBox(
+                                maxHeight: 50,
+                                maxWidth: 50,
+                                child: CircleAvatar(
+                                    backgroundColor: color.withOpacity(0.5),
+                                    backgroundImage: podcastLocal.avatarImage,
+                                    child: _updateIndicator(podcastLocal)),
+                              ),
+                            ),
+                          );
+                        }).toList(),
+                      ),
+                    ),
