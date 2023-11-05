@@ -1017,3 +1017,19 @@ class ShowEpisode extends StatelessWidget {
             style: TextStyle(color: Colors.red),
           ),
         )
+      ],
+    );
+    return ifUseData;
+  }
+}
+
+//Circle Indicator
+class CircleTabIndicator extends Decoration {
+  final BoxPainter _painter;
+  CircleTabIndicator({required Color color, required double radius})
+      : _painter = _CirclePainter(color, radius);
+  static _returnNull() => null;
+  @override
+  BoxPainter createBoxPainter([VoidCallback onChanged = _returnNull]) =>
+      _painter;
+}
