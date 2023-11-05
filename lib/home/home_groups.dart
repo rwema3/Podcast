@@ -811,3 +811,56 @@ class ShowEpisode extends StatelessWidget {
                                               style: TextStyle(
                                                   color: Colors.red,
                                                   fontStyle: FontStyle.italic),
+                                            )
+                                          : Center(),
+                                    ],
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 5,
+                                  child: Container(
+                                    padding: EdgeInsets.only(top: 2.0),
+                                    alignment: Alignment.topLeft,
+                                    child: Text(
+                                      episodes![index].title!,
+                                      style: TextStyle(
+                                          //fontSize: _width / 32,
+                                          ),
+                                      maxLines: 4,
+                                      overflow: TextOverflow.fade,
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 1,
+                                  child: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: <Widget>[
+                                      Text(
+                                        episodes![index]
+                                            .pubDate!
+                                            .toDate(context),
+                                        overflow: TextOverflow.visible,
+                                        style: TextStyle(
+                                          height: 1,
+                                          fontSize: width / 35,
+                                          color: c,
+                                          fontStyle: FontStyle.italic,
+                                        ),
+                                      ),
+                                      Spacer(),
+                                      if (episodes![index].duration != 0)
+                                        Align(
+                                          alignment: Alignment.center,
+                                          child: Text(
+                                            episodes![index].duration!.toTime,
+                                            style: TextStyle(
+                                              fontSize: width / 35,
+                                              // color: _c,
+                                              // fontStyle: FontStyle.italic,
+                                            ),
+                                          ),
+                                        ),
+                                      episodes![index].duration == 0 ||
+                                              episodes![index]
