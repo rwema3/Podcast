@@ -777,3 +777,37 @@ class ShowEpisode extends StatelessWidget {
                                           ),
                                         ),
                                       ),
+                                      Spacer(),
+                                      Selector<
+                                              AudioPlayerNotifier,
+                                              tuple
+                                                  .Tuple2<EpisodeBrief?, bool>>(
+                                          selector: (_, audio) => tuple.Tuple2(
+                                              audio.episode,
+                                              audio.playerRunning),
+                                          builder: (_, data, __) {
+                                            return (episodes![index]
+                                                            .enclosureUrl ==
+                                                        data.item1
+                                                            ?.enclosureUrl &&
+                                                    data.item2)
+                                                ? Container(
+                                                    height: 20,
+                                                    width: 20,
+                                                    margin:
+                                                        EdgeInsets.symmetric(
+                                                            horizontal: 2),
+                                                    decoration: BoxDecoration(
+                                                      shape: BoxShape.circle,
+                                                    ),
+                                                    child: WaveLoader(
+                                                        color: context
+                                                            .accentColor))
+                                                : Center();
+                                          }),
+                                      episodes![index].isNew == 1
+                                          ? Text(
+                                              'New',
+                                              style: TextStyle(
+                                                  color: Colors.red,
+                                                  fontStyle: FontStyle.italic),
