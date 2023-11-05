@@ -903,3 +903,45 @@ class ShowEpisode extends StatelessWidget {
             ),
           ),
         ),
+      ],
+    );
+  }
+
+  Future<tuple.Tuple5<int, bool, bool, bool, List<int>>> _initData(
+      EpisodeBrief episode) async {
+    final menuList = await _getEpisodeMenu();
+    final tapToOpen = await _getTapToOpenPopupMenu();
+    final listened = await _isListened(episode);
+    final liked = await _isLiked(episode);
+    final downloaded = await _isDownloaded(episode);
+
+    return tuple.Tuple5(listened, liked, downloaded, tapToOpen, menuList);
+  }
+
+  Future<int> _isListened(EpisodeBrief episode) async {
+    return await _dbHelper.isListened(episode.enclosureUrl);
+  }
+
+  Future<bool> _isLiked(EpisodeBrief episode) async {
+    return await _dbHelper.isLiked(episode.enclosureUrl);
+  }
+
+  Future<List<int>> _getEpisodeMenu() async {
+    final popupMenuStorage = KeyValueStorage(episodePopupMenuKey);
+    final list = await popupMenuStorage.getMenu();
+    return list;
+  }
+
+  Future<bool> _isDownloaded(EpisodeBrief episode) async {
+    return await _dbHelper.isDownloaded(episode.enclosureUrl);
+  }
+
+  Future<bool> _getTapToOpenPopupMenu() async {
+    final tapToOpenPopupMenuStorage = KeyValueStorage(tapToOpenPopupMenuKey);
+    final boo = await tapToOpenPopupMenuStorage.getInt(defaultValue: 0);
+    return boo == 1;
+  }
+
+  Future<void> _markListened(EpisodeBrief episode) async {
+    var marked = await _dbHelper.checkMarked(episode);
+    if (!marked) {
