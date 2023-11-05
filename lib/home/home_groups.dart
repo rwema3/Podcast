@@ -1033,3 +1033,11 @@ class CircleTabIndicator extends Decoration {
   BoxPainter createBoxPainter([VoidCallback onChanged = _returnNull]) =>
       _painter;
 }
+
+class _CirclePainter extends BoxPainter {
+  final Paint _paint;
+  final double radius;
+
+  _CirclePainter(Color color, this.radius)
+      : _paint = Paint()
+          ..color = color
