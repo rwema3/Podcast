@@ -70,3 +70,9 @@ dependencies:
   path_provider_android: ^2.0.14
   material_color_utilities: ^0.1.4
   dynamic_color: ^1.4.0
+
+dependency_overrides:
+  linkify:
+    git:
+      url: https://github.com/tsacdop/linkify.git
+
