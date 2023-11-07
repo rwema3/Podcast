@@ -15,3 +15,6 @@ dependencies:
   audio_session: ^0.1.0
   cached_network_image: ^3.1.0
   color_thief_dart: ^0.1.0
+  confetti: ^0.6.0
+  cupertino_icons: ^1.0.2
+  connectivity: ^3.0.3
