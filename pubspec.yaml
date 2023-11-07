@@ -76,3 +76,6 @@ dependency_overrides:
     git:
       url: https://github.com/tsacdop/linkify.git
 
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
