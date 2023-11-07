@@ -83,3 +83,9 @@ dev_dependencies:
 
 flutter:
   assets:
+    - assets/
+  uses-material-design: true
+flutter_intl:
+  enabled: true
+  localizely:
+    project_id: bde4e9bd-4cb2-449b-9de2-18f231ddb47d
