@@ -36,3 +36,37 @@ dependencies:
   line_icons: ^2.0.1
   flutter_media_metadata: ^0.1.1
   marquee: ^2.0.0
+  google_fonts: ^2.1.0
+  image: ^3.0.2
+  intl: ^0.17.0
+  json_serializable: ^4.1.0
+  json_annotation: ^4.0.1
+  permission_handler: ^6.1.1
+  provider: ^6.0.0
+  sqflite: ^2.0.0+3
+  state_notifier: ^0.7.0
+  tuple: ^2.0.0
+  url_launcher: ^6.0.3
+  uuid: ^3.0.4
+  workmanager: ^0.5.0
+  wc_flutter_share: ^0.4.0
+  xml: ^5.2.0
+  audio_service: ^0.18.0
+  just_audio: ^0.9.23
+  flutter_downloader:
+    git:
+      url: https://github.com/tsacdop/flutter_downloader.git
+  focused_menu:
+    git:
+      url: https://github.com/tsacdop/focused_menu.git
+  webfeed:
+    git:
+      url: https://github.com/tsacdop/webfeed.git
+  equatable: ^2.0.0
+  path_provider: ^2.0.1
+  http_parser: ^4.0.0
+  collection: ^1.15.0-nullsafety.4
+  shared_preferences_android: ^2.0.12
+  path_provider_android: ^2.0.14
+  material_color_utilities: ^0.1.4
+  dynamic_color: ^1.4.0
