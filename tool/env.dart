@@ -6,3 +6,4 @@ Future<void> main() async {
     'apiKey': Platform.environment['API_KEY'],
   };
 
+  final filename = 'lib/.env.dart';
