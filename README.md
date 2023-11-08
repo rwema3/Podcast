@@ -41,3 +41,32 @@ More to come...
 |![][Homepage ScreenShot]|![][Group Screenshot] | ![][Podcast Screenshot] | ![][Episode Screenshot]| ![][Darkmode Screenshot] |
 
 ## Localization
+
+Please [Email](mailto:<tsacdop.app@gmail.com>) me you'd like to contribute to support more languages!
+
+Credit to [Localizely](https://localizely.com/) for kind support to open source projects.
+
+### ![English]
+
+### ![Chinese Simplified]
+
+### ![French] 
+
+### ![Spanish]
+
+### ![Portuguese]
+
+## License
+
+Tsacdop is licensed under the [GPL v3.0](https://github.com/stonega/tsacdop/blob/master/LICENSE) license.
+
+## Build
+
+1. If you don't have Flutter SDK installed; Please visit the official [Flutter][Flutter Install] site.
+2. Fetch the latest source code from the master branch.
+
+``` 
+git clone https://github.com/stonega/tsacdop.git
+```
+
+3. Add api search api configure file.  
