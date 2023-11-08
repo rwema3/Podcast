@@ -42,7 +42,7 @@ More to come...
 
 ## Localization
 
-Please [Email](mailto:<tsacdop.app@gmail.com>) me you'd like to contribute to support more languages!
+Please [Email](mailto:<info@rwema.com>) me you'd like to contribute to support more languages!
 
 Credit to [Localizely](https://localizely.com/) for kind support to open source projects.
 
