@@ -38,3 +38,6 @@ More to come...
 
 | Home Page | Group | Podcast | Episode| Dark Mode |
 | ----- | ----- | ----- | ------ | ----- |
+|![][Homepage ScreenShot]|![][Group Screenshot] | ![][Podcast Screenshot] | ![][Episode Screenshot]| ![][Darkmode Screenshot] |
+
+## Localization
