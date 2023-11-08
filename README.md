@@ -5,4 +5,7 @@
 [![Github Downloads][]][github release - recent]
 [![style: effective dart][]][effective dart pub]
 [![License badge][]][license]
+[![fdroid install][]][fdroid link]
+
+## About
 
