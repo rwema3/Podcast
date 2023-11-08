@@ -70,3 +70,6 @@ git clone https://github.com/stonega/tsacdop.git
 ```
 
 3. Add api search api configure file.  
+
+Tsacdop uses the ListenNotes API 1.0 pro to search for podcasts, which is not free, so I can not expose the API key in the repo.
+If you want to build the app, you need to create a new file named `.env.dart` in the lib folder. Add the following code to `.env.dart`. If you don't have a ListenNotes 
