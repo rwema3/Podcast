@@ -75,3 +75,5 @@ Tsacdop uses the ListenNotes API 1.0 pro to search for podcasts, which is not fr
 If you want to build the app, you need to create a new file named `.env.dart` in the lib folder. Add the following code to `.env.dart`. If you don't have a ListenNotes api key, keep the apiKey empty like ''. Then the app will only support the PodcastIndex search.
 You can get your own ListenNotes API key on [ListenNotes](https://www.listennotes.com/api/). Remember that you need to get a pro plan API because the basic plan doesn't provide an rss link for the search result. 
 
+``` dart
+final environment = {"apiKey":""};
