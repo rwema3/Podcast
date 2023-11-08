@@ -98,3 +98,18 @@ If you have an issue or found a bug, please raise a GitHub issue. Pull requests 
   + sqflite
   + shared_preferences
 * Audio
+  + just_audio
+  + audio_service
+* State management
+  + provider
+* Download
+  + flutter_downloader
+* Background task
+  + workmanager
+
+### Directory Structure
+
+``` 
+UI
+src
+└──home
