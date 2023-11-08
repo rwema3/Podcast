@@ -32,3 +32,9 @@ The podcast search engine is powered by, [ListenNotes](https://listennotes.com) 
 * Skip silence
 * Boost volume
 
+More to come...
+
+## Preview
+
+| Home Page | Group | Podcast | Episode| Dark Mode |
+| ----- | ----- | ----- | ------ | ----- |
