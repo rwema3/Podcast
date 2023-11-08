@@ -9,3 +9,7 @@
 
 ## About
 
+Enjoy podcasts.
+
+Tsacdop is a podcast player developed with Flutter, a clean, simply beautiful, and friendly app, which is also free and open source.
+
