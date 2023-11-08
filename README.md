@@ -176,3 +176,14 @@ For help getting started with Flutter, view our
 [Chinese Simplified]: https://img.shields.io/badge/dynamic/json?style=for-the-badge&color=%2323CCC6&label=Chinese%20Simplified&query=%24.languages%5B2%5D.reviewedProgress&url=https%3A%2F%2Fapi.localizely.com%2Fv1%2Fprojects%2Fbde4e9bd-4cb2-449b-9de2-18f231ddb47d%2Fstatus&suffix=%
 [French]: https://img.shields.io/badge/dynamic/json?style=for-the-badge&color=%2323CCC6&label=French(ppp)&query=%24.languages%5B5%5D.reviewedProgress&url=https%3A%2F%2Fapi.localizely.com%2Fv1%2Fprojects%2Fbde4e9bd-4cb2-449b-9de2-18f231ddb47d%2Fstatus&suffix=%
 [Spanish]: https://img.shields.io/badge/dynamic/json?style=for-the-badge&color=%2323CCC6&label=Spanish(Joel)&query=%24.languages%5B7%5D.reviewedProgress&url=https%3A%2F%2Fapi.localizely.com%2Fv1%2Fprojects%2Fbde4e9bd-4cb2-449b-9de2-18f231ddb47d%2Fstatus&suffix=%
+[Portuguese]: https://img.shields.io/badge/dynamic/json?style=for-the-badge&color=%2323CCC6&label=portuguese(Bruno)&query=%24.languages%5B9%5D.reviewedProgress&url=https%3A%2F%2Fapi.localizely.com%2Fv1%2Fprojects%2Fbde4e9bd-4cb2-449b-9de2-18f231ddb47d%2Fstatus&suffix=%
+[localizely - website]: https://localizely.com/
+[google play - icon]: https://img.shields.io/badge/google-playStore-%2323CCC6
+[google play]: https://play.google.com/store/apps/details?id=com.stonegate.tsacdop
+[Homepage ScreenShot]: https://raw.githubusercontent.com/stonega/tsacdop/master/preview/1585893838840.png
+[Group Screenshot]: https://raw.githubusercontent.com/stonega/tsacdop/master/preview/1585894051734.png
+[Podcast Screenshot]: https://raw.githubusercontent.com/stonega/tsacdop/master/preview/1585893877702.png
+[Episode Screenshot]: https://raw.githubusercontent.com/stonega/tsacdop/master/preview/1585896237809.png
+[Darkmode Screenshot]: https://raw.githubusercontent.com/stonega/tsacdop/master/preview/1585893920721.png
+[style: effective dart]: https://img.shields.io/badge/style-effective_dart-40c4ff.svg
+[effective dart pub]: https://pub.dev/packages/effective_dart
