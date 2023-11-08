@@ -161,3 +161,11 @@ For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials, samples, guidance on mobile development, and a full API reference.
 
 [Flutter Install]: https://flutter.dev/docs/get-started/install
+[tsacdop banner]: https://raw.githubusercontent.com/stonega/tsacdop/master/preview/banner.png
+[build status - cirrus]: https://circleci.com/gh/stonega/tsacdop/tree/master.svg?style=shield
+[github action]: https://github.com/stonega/tsacdop/workflows/Flutter%20Build/badge.svg
+[github action link]: https://github.com/stonega/tsacdop/actions
+[build status ]: https://circleci.com/gh/stonega/tsacdop/tree/master
+[github release]: https://img.shields.io/github/v/release/stonega/tsacdop
+[github release - recent]: https://github.com/stonega/tsacdop/releases
+[github downloads]: https://img.shields.io/github/downloads/stonega/tsacdop/total?color=%230000d&label=downloads
