@@ -113,3 +113,15 @@ If you have an issue or found a bug, please raise a GitHub issue. Pull requests 
 UI
 src
 └──home
+   ├──home.dart [Homepage]
+   ├──searc_podcast.dart [Search Page]
+   └──playlist.dart [Playlist Page]
+└──podcasts
+   ├──podcast_manage.dart [Group Page]
+   └──podcast_detail.dart [Podcast Page]
+└──episodes
+   └──episode_detail.dart [Episode Page]
+└──settings
+   └──setting.dart [Setting Page]
+
+STATE
