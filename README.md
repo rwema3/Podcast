@@ -90,3 +90,11 @@ flutter run
 
 If you have an issue or found a bug, please raise a GitHub issue. Pull requests are also welcome.
 
+## Architecture
+
+### Plugins
+
+* Local storage
+  + sqflite
+  + shared_preferences
+* Audio
