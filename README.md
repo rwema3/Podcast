@@ -18,3 +18,6 @@ Credit to the Flutter team and all involved plugins, especially [webfeed](https:
 The podcast search engine is powered by, [ListenNotes](https://listennotes.com) & [PodcastIndex](https://podcastindex.org/).
 
 ## Features
+
+* Podcast group management
+* Playlists support
