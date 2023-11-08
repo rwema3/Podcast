@@ -25,3 +25,10 @@ The podcast search engine is powered by, [ListenNotes](https://listennotes.com) 
 * OPML file export and import
 * Auto-syncing in the background
 * Listening and subscription history record
+* Dark mode / accent color
+* Download for offline play
+* Auto-download new episodes / auto-delete outdated downloads
+* Settings backup
+* Skip silence
+* Boost volume
+
