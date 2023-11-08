@@ -125,3 +125,11 @@ src
    └──setting.dart [Setting Page]
 
 STATE
+src
+└──state
+   ├──audio_state.dart [Audio State]
+   ├──download_state.dart [Episode Download]
+   ├──podcast_group.dart [Podcast Groups]
+   ├──refresh_podcast.dart [Episode Refresh]
+   └──setting_state.dart [Setting]
+
