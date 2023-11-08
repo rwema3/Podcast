@@ -77,3 +77,16 @@ You can get your own ListenNotes API key on [ListenNotes](https://www.listennote
 
 ``` dart
 final environment = {"apiKey":""};
+```
+
+4. Run the app with Android Studio or Visual Studio. Or the command line.
+
+``` 
+flutter pub get
+flutter run
+```
+
+## Contribute 
+
+If you have an issue or found a bug, please raise a GitHub issue. Pull requests are also welcome.
+
