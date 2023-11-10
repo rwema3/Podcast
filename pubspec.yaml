@@ -17,7 +17,7 @@ dependencies:
   color_thief_dart: ^0.1.0
   confetti: ^0.6.0
   cupertino_icons: ^1.0.2
-  connectivity: ^3.0.3
+  connectivity: ^4.0.3
   crypto: ^3.0.1
   device_info: ^2.0.2
   dio_cookie_manager: ^2.0.0
