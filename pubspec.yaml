@@ -12,7 +12,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   auto_animated: ^3.0.0
-  audio_session: ^0.1.0
+  audio_session: ^0.2.4
   cached_network_image: ^3.1.0
   color_thief_dart: ^0.1.0
   confetti: ^0.6.0
